@@ -2,7 +2,6 @@
 
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
@@ -13,6 +12,13 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
 
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup {}
+        end
+    }
     --  use ({
     --      "rose-pine/neovim", as = "rose-pine",
     --      config = function()
@@ -55,11 +61,17 @@ return require('packer').startup(function(use)
 
     use ('ThePrimeagen/vim-be-good')
 
-    use {
-        'nvim-flutter/flutter-tools.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'stevearc/dressing.nvim', -- optional for vim.ui.select
-        },
-    }
+   -- use {
+   --     'nvim-flutter/flutter-tools.nvim',
+   --     requires = {
+   --         'nvim-lua/plenary.nvim',
+   --         'stevearc/dressing.nvim', -- optional for vim.ui.select
+   --     },
+   -- }
+   use ('mfussenegger/nvim-jdtls')
+   use {
+       'nvim-lualine/lualine.nvim',
+       requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+   }
+   use ('folke/which-key.nvim')
 end)
