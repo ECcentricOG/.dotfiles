@@ -36,3 +36,4 @@ return {
         vim.keymap.set("n", "gh", "<cmd>diffget //3<CR>")
     end
 }
+
