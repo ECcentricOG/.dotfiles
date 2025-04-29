@@ -36,9 +36,6 @@ return {
             lspconfig.angularls.setup({
                 capabilities = capabilities
             })
-            lspconfig.cssls.setup({
-                capabilities = capabilities
-            })
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {desc = 'Hover'})
             vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {desc = 'Go to Definition'})
             vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {desc = 'Go to References'})
