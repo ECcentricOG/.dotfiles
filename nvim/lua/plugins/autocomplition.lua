@@ -31,7 +31,11 @@ return {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
-        sources = cmp.config.sources({
+                preselect = cmp.PreselectMode.Item, -- <--- This makes the first item selected
+                completion = {
+                    completeopt = 'menu,menuone,noinsert',
+                },
+                sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
         }, {
