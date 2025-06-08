@@ -1,5 +1,6 @@
 function EccColors(color)
-        color = color or "intellij-dark"
+        -- color = color or "intellij-dark"
+        color = color or "tokyonight-night"
         vim.cmd.colorscheme(color)
 
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -12,6 +13,15 @@ return {
         dependencies = {
             "rktjmp/lush.nvim",
         },
+        config = function()
+            EccColors()
+        end,
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
         config = function()
             EccColors()
         end,
