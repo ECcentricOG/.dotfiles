@@ -1,0 +1,40 @@
+                        -- Left Anti Join --
+-- Q. Get all customers who haven't place any orders. --
+/*
+select * from customers as c left join orders as o
+on c.id = o.customer_id
+where o.customer_id is null;
+*/
+
+                        -- Right Anti Join --
+
+-- Q. Get all order without matching customers --
+/*
+select * from customers as c right join orders as 
+o on c.id = o.customer_id
+where c.id is null; --
+*/
+
+                        -- Full Anti Join --
+
+-- Q. find customers without orders and orders without customers --
+/*
+select * from customers as c full join orders as o
+on c.id = o.customer_id 
+where c.id is null OR o.customer_id is null;
+*/
+/*
+select * from customers as c left join orders as o
+on c.id = o.customer_id 
+where o.customer_id is null
+                        UNION
+select * from orders as o left join customers as c
+on o.customer_id = c.id
+where c.id is null;
+*/
+
+
+                        -- Cross Join --
+
+-- Q. Generate all possible combination on customers and orders  --
+select * from customers cross join orders;

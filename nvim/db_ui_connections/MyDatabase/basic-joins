@@ -1,0 +1,37 @@
+                                -- Inner Join --
+
+-- Q. Get only customers who have palced orders --
+/* 
+select customers.id, customers.first_name, orders.order_id, orders.sales
+from customers inner join orders on customers.id = orders.customer_id; 
+*/
+
+
+                                -- Left Join --
+
+-- Q. Get all customers along with their orders, including those without orders --
+/*
+select c.id, c.first_name, o.order_id, o.sales
+from customers as c left join orders as o on c.id = o.customer_id;
+*/
+
+                                -- Right Join --
+
+-- Q. Get all customers with their orders including orders without matching customers --
+/*
+select c.id, c.first_name, o.order_id, o.sales
+from customers as c right join orders as o on c.id = o.customer_id;
+*/
+                                
+                                -- Full Join (MySQL not support) --
+
+-- Q. Get all customers and orders even if there is no match. --
+/*
+select * from customers as c full join orders as o on c.id = o.customer_id;
+*/
+                            
+-- MySQL Version --
+select * from customers as c left join orders as o on c.id = o.customer_id
+                                UNION
+select * from customers as c right join orders as o on c.id = o.customer_id
+

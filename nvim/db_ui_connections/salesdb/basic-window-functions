@@ -1,0 +1,37 @@
+-- Partition Clause --
+
+-- Find total sales and total sales for each product and also provide details like order id and order date
+-- Find total sales for each combination of product and order status
+/*
+select orderid,
+    orderdate,
+    productid,
+    sales,
+    orderstatus,
+    sum(sales) over() TotalSales,
+    sum(sales) over(Partition By productid) TotalSalesByProduct,
+    sum(sales) over(Partition By productid, orderstatus) SalesByProductAndStatus 
+    from orders;
+*/
+
+-- Order Clause --
+
+-- Rank each order based on their sales from highest to lowest
+/*
+select orderid,
+    orderdate,
+    sales,
+    Rank() over(Order by sales DESC) RankSales
+    from orders;
+*/
+
+-- Window Frame --
+
+-- conbine the sales of current month with next two months
+select orderid,
+    orderdate,
+    orderstatus,
+    sales,
+    sum(sales) over(Partition By orderstatus order by orderdate
+    Rows between current row and 2 following) CombineSales
+from orders;

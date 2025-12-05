@@ -1,0 +1,11 @@
+select 
+    o.orderid,
+    Concat(c.firstname, " ",COALESCE(c.lastname, "")) as CustomerName,
+    p.product as ProductName,
+    o.sales,
+    p.price,
+    Concat(e.firstname, " ", COALESCE(e.lastname, "")) as EmployeeName
+from orders as o left join customers as c on o.customerid = c.customerid
+left join products as p on o.productid = p.productid
+left join employees as e on o.salespersonid = e.employeeid;
+

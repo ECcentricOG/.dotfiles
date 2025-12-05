@@ -13,6 +13,14 @@ return {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
+      -- added
+      cmp.setup.filetype({"sql", "mysql"}, {
+        sources = {
+          {name = "vim-dadbod-completion"},
+          {name = "buffer"},
+        },
+      })
+      -- over
       require("luasnip.loaders.from_vscode").lazy_load()
       cmp.setup({
         snippet = {
@@ -45,3 +53,4 @@ return {
     end,
   },
 }
+

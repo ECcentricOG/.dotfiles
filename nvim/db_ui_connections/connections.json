@@ -1,0 +1,1 @@
+[{"url": "mysql://localhost:3306/MyDatabase", "name": "MyDatabase"}, {"url": "mysql://localhost:3306/salesdb", "name": "salesdb"}, {"url": "mysql://localhost:3306/DataWarehouse?local_infile=1", "name": "DataWarehouse"}]

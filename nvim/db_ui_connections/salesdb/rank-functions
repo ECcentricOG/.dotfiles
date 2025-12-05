@@ -1,0 +1,49 @@
+/*
+select orderid,
+    sales,
+    ROW_NUMBER() over(Order by sales desc) as RowNumber,
+    Rank() over(Order by sales desc) as RankFun,
+    DENSE_RANK() over(Order by sales desc) as DenseRank,
+    -- NTILE(3) over(Order by sales desc) as NTILE-- there is no nTile in MySQL
+    CUME_DIST() over(Order by sales desc) as DenseRank,
+    PERCENT_RANK() over(Order by sales desc) as DenseRank 
+from orders;
+*/
+
+-- Find the top highest sales for each product
+/*
+select * from (
+select orderid,
+    productid,
+    sales,
+    ROW_NUMBER() over(Partition By productid Order By sales desc) TopSales
+from orders)t where TopSales = 1;
+*/
+
+-- Find the lowest 2 customers based on their total sales
+/*
+select * from (
+select
+    customerid,
+    sum(sales) TotalSales,
+    ROW_NUMBER() OVER(Order By sum(sales)) as RankCustomers
+from orders 
+group by customerid
+)t where RankCustomers <= 2;
+*/
+
+-- Assign unique IDs to the rows of the 'Order Archive' table
+/*
+select *,
+    ROW_NUMBER() over(Order by orderid) UniqueVal
+from orders_archive;
+*/
+
+-- Find the product that falls within the highest 40% of the prices
+select *,
+    Concat((1 - OverForty) * 100, "%") Percentage
+from(
+select *,
+    PERCENT_RANK() OVER(Order by price DESC) as OverForty
+from products
+)t where OverForty <= 0.4;

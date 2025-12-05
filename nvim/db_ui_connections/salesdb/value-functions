@@ -1,0 +1,9 @@
+-- Analyze the month over month performance by finding the percentage change in sales 
+-- between current and last month
+
+select 
+    MONTH(orderdate) OrderMonth,
+    SUM(sales) MonthlySales,
+    LAG(SUM(sales)) over(Order by MONTH(orderdate)) MON_SALES
+from orders
+group by MONTH(orderdate)

@@ -21,10 +21,7 @@ return {
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
             local lspconfig = require("lspconfig")
-            lspconfig.ts_ls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.html.setup({
+            lspconfig.bashls.setup({
                 capabilities = capabilities
             })
             lspconfig.lua_ls.setup({
@@ -33,14 +30,17 @@ return {
             lspconfig.gopls.setup({
                 capabilities = capabilities
             })
-            lspconfig.angularls.setup({
-                capabilities = capabilities
-            })
-            lspconfig.clangd.setup({
-                capabilities = capabilities
-            })
             lspconfig.jdtls.setup({
                 capabilities = capabilities
+            })
+            lspconfig.pyright.setup({
+                capabilities = capabilities
+            })
+            lspconfig.sqlls.setup({
+                capabilities = capabilities,
+                cmd = { "sql-language-server", "up", "--method", "stdio" },
+                filetypes = { "sql", "mysql" },
+                single_file_support = true,
             })
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {desc = 'Hover'})
             vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {desc = 'Go to Definition'})
@@ -50,4 +50,5 @@ return {
         end,
     },
 }
+
 
