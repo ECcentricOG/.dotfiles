@@ -2,7 +2,7 @@
 # It will not be overwritten, so edit it as you like.
 
 set $mod Mod1
-font pango:monospace 15px
+font pango:Jetbrains Mono 15px
 
 for_window [class="^.*"] border pixel 2
 # class                 border  backgr. text    indicator child_border
@@ -14,9 +14,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+#lock screen
+bindsym $mod+o exec i3lock -c 000000
+
 # # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec sudo brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec sudo brightnessctl set 10%-
 
 # Keybindings
 floating_modifier $mod
@@ -46,7 +49,7 @@ bindsym $mod+Shift+Right move right
 
 # Layout and container management
 bindsym $mod+backslash split h
-bindsym $mod+percent split v
+bindsym $mod+V split v
 bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -98,7 +101,7 @@ bar {
 }
 
 # Background
-exec_always feh --bg-scale Downloads/1391067.jpg
+exec_always feh --bg-scale Downloads/Wallpapers/me.jpg
 
 # --- Workspace Assignments ---
 #assign [class="firefox_firefox"] 1
@@ -153,3 +156,7 @@ for_window [window_role="pop-up"] floating enable
 # Switch between floating and tiling
 bindsym $mod+Shift+f layout toggle split
 
+# Screen lock and suspend 
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank

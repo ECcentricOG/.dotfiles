@@ -25,9 +25,8 @@ session=$(basename "$workdir" | tr -cd '[:alnum:]' | tr '[:upper:]' '[:lower:]')
 tmux new-session -d -s "$session" -c "$workdir" "nvim '$nvim_target'"
 
 # Create 3 additional windows (tabs) in the same directory
-tmux new-window -t "$session" -c "$workdir" -n "server"
-tmux new-window -t "$session" -c "$workdir" -n "database"
-tmux new-window -t "$session" -c "$workdir" -n "terminal" # Switch to the first window
+tmux new-window -t "$session" -c "$workdir" -n "run"
+tmux new-window -t "$session" -c "$workdir" -n "gemini" "gemini"
 
 tmux select-window -t "$session:1"
 
